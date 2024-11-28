@@ -20,11 +20,6 @@ router.get('/:id', validateObjectID , async (req, res) => {
     res.status(200).send(movie);
 });
 
-router.post('/', async (req, res) => {
-
-});
-
-
 router.post('/', [Authorization ,validationSchema(movieValidation)], async (req, res) => {
 
     const genre = await genreModel.findById(req.body.genreID);
@@ -32,7 +27,10 @@ router.post('/', [Authorization ,validationSchema(movieValidation)], async (req,
 
     const movie = new movieModel({
         title: req.body.title,
-        genreID: genre._id,
+        genre: {
+            _id: genre._id,
+            name: genre.name
+        },
         numberInStock: req.body.numberInStock,
         dailyRentalRate: req.body.dailyRentalRate
 });

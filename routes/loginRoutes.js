@@ -8,7 +8,7 @@ const Joi = require('joi');
     // Admin
     {
         "name" : "Mohamed ali badawy",
-        "email" : "mohamed.ali.badawy.pr@gmail.com",
+        "email" : "mostafa.ali.badawy.pr@gmail.com",
         "password" : "159132"
     }
 */ 
@@ -26,7 +26,5 @@ router.post('/', validationSchema(loginValidation) ,async (req, res) => {
     const token = user.generateAuthToken();
     res.status(200).send(token);
 });
-
-
 
 module.exports = router;
